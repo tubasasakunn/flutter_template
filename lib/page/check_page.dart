@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../widgets/banner_ad_widget.dart';
 import '../widgets/interstitial_ad_manager.dart';
+import '../services/share.dart';
 
 class CongigCheckPage extends StatefulWidget {
   const CongigCheckPage({super.key});
@@ -10,12 +11,13 @@ class CongigCheckPage extends StatefulWidget {
 }
 
 class _CongigCheckPageState extends State<CongigCheckPage> {
-  final InterstitialAdManager interstitialAdManager = InterstitialAdManager();
+  final InterstitialAdManager interstitialAdManager = InterstitialAdManager(); //広告で使う
+  final GlobalKey _globalKey = GlobalKey(); //シェアで使う
 
   @override
   void initState() {
     super.initState();
-    interstitialAdManager.interstitialAd();//必要
+    interstitialAdManager.interstitialAd();//広告で使う
   }
 
   @override
@@ -69,6 +71,30 @@ class _CongigCheckPageState extends State<CongigCheckPage> {
                 interstitialAdManager.showInterstitialAd();
               },
             ),
+
+
+            // シェアのデモ
+            const SizedBox(height: 20),
+            ElevatedButton(
+              child: const Text('テストテキスト'),
+              onPressed: () {
+                shareWithText("textToShare");
+              },
+            ),
+            RepaintBoundary( //共有したいWidgetをRepaintBoundaryで囲む
+              key: _globalKey,
+              child: Container(
+                color: colorScheme.background, //背景無いと透明になる
+                child: Text("共有したいWidget")),
+              ),
+              ElevatedButton(
+                child: const Text('画像付きテストテキスト'),
+                onPressed: () {
+                  shareWithImage(_globalKey, "text with image");
+                },
+              )
+            
+
           ],
         ),
       ),
