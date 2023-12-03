@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import '../widgets/banner_ad_widget.dart';
 import '../widgets/interstitial_ad_manager.dart';
 import '../services/share.dart';
+import 'package:provider/provider.dart';
+import '../models/base_model_provider.dart';
 
 class CongigCheckPage extends StatefulWidget {
   const CongigCheckPage({super.key});
@@ -92,7 +94,11 @@ class _CongigCheckPageState extends State<CongigCheckPage> {
                 onPressed: () {
                   shareWithImage(_globalKey, "text with image");
                 },
-              )
+              ),
+
+              //providerのデモ
+              const SizedBox(height: 20),
+              Text(Provider.of<BaseModelProvider>(context, listen: false).model.id),//.でメンバ変数にアクセス
             
 
           ],
