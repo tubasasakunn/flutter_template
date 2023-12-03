@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'page/home_page.dart';
+import 'page/check_page.dart';
+import 'configs/thema.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,10 +13,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const HomePage(),
+      theme: createThemeData(context, false),
+      darkTheme: createThemeData(context, true),
+      home: const CongigCheckPage(),
     );
   }
 }
