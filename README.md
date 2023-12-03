@@ -24,3 +24,8 @@ export storePassword=<storePassword作ったときのパスワード>
 ```
 ./update_build_info.sh
 ```
+
+広告貼る場合は以下を変更
+- android/app/src/main/AndroidManifest.xml
+- ios/Runner/Info.plist
+- lib/configs/ad.dart

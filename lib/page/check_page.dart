@@ -1,7 +1,22 @@
 import 'package:flutter/material.dart';
+import '../widgets/banner_ad_widget.dart';
+import '../widgets/interstitial_ad_manager.dart';
 
-class CongigCheckPage extends StatelessWidget {
+class CongigCheckPage extends StatefulWidget {
   const CongigCheckPage({super.key});
+
+  @override
+  _CongigCheckPageState createState() => _CongigCheckPageState();
+}
+
+class _CongigCheckPageState extends State<CongigCheckPage> {
+  final InterstitialAdManager interstitialAdManager = InterstitialAdManager();
+
+  @override
+  void initState() {
+    super.initState();
+    interstitialAdManager.interstitialAd();//必要
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -44,6 +59,16 @@ class CongigCheckPage extends StatelessWidget {
             _buildColorItem('Error', colorScheme.error, colorScheme.onError),
             _buildColorItem('Background', colorScheme.background, colorScheme.onBackground),
             _buildColorItem('Surface', colorScheme.surface, colorScheme.onSurface),
+
+            // 広告のデモ
+            const SizedBox(height: 20),
+            BannerAdWidget(),
+            ElevatedButton(
+              child: const Text('Interstitial Ad'),
+              onPressed: () {
+                interstitialAdManager.showInterstitialAd();
+              },
+            ),
           ],
         ),
       ),
